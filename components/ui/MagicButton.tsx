@@ -1,9 +1,9 @@
 
 import React from 'react'
 
- const MagicButton = ({title,hancleClick}:
+ const MagicButton = ({title,handleClick}:
   { title: string;
-    hancleClick?: () => void}
+    handleClick?: () => void}
  ) => {
   return (
     <div>        
