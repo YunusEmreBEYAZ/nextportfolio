@@ -1,4 +1,7 @@
+"use client";
+
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 export const BentoGrid = ({
   className,
@@ -10,7 +13,7 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        "grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto ",
+        "grid grid-cols-1 md:grid-cols-6 lg:grid-cols-5 md:grid-row-7 gap-4 lg:gap-8 mx-auto",
         className
       )}
     >
@@ -27,7 +30,6 @@ export const BentoGridItem = ({
   id,
   imgClassName,
   img,
-  spareImg,  
 }: {
   className?: string;
   title?: string | React.ReactNode;
@@ -38,6 +40,11 @@ export const BentoGridItem = ({
   img?: string;
   spareImg?: string;
 }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); // Ensures rendering happens only on the client
+  }, []);
   return (
     <div
       className={cn(
@@ -59,15 +66,17 @@ export const BentoGridItem = ({
             )}
         </div>
         <div className={cn(titleClassName, "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10")}>
-        <div className="font-sans font-extralight text-neutral-600 text-sm md:text-xs lg:text-base z-10 dark:text-neutral-300">
+          <div className="font-sans font-extralight text-neutral-600 text-sm md:text-xs lg:text-base z-10 dark:text-neutral-300">
             {description}
-        </div>
-        <div className="font-sans font-bold text-lg lg:text-3xl dark:text-neutral-200 max-w-96 z-10">
-          {title}
+          </div>
+          <div className="font-sans font-bold text-lg lg:text-3xl dark:text-neutral-200 max-w-96 z-10">
+            {title}
+          </div>
         </div>
 
-        </div>
-      </div>  
+
+      </div>
+
     </div>
   );
 };
